@@ -9,7 +9,7 @@
 #' @param TEXT.name character. Column name which whould be TEXT.
 #' @param LABEL.name character. Column name which would be LABEL.
 #' @param RHINO logical. In case of morphological anaysis need for TEXT column.
-#' @param pos character. Among Right: ALL(all Part-Of-Speech), noun(NNG, NNP, NP), verb(VV, vA, XR), NNG, NNP, NP, NNB, VV, VA, XR, VX
+#' @param pos character. Among Right: ALL(all Part-Of-Speech), noun(NNG, NNP, NP), verb(VV, VA, XR), NNG, NNP, NP, NNB, VV, VA, XR, VX
 #' @return matrix or dataframe(LABEL=TRUE)
 #' @export
 #' @examples

@@ -22,7 +22,7 @@ makeDTM(docs, key = "all", LABEL = FALSE, weight = "tf",
 
 \item{RHINO}{logical. In case of morphological anaysis need for TEXT column.}
 
-\item{pos}{character. Among Right: ALL(all Part-Of-Speech), noun(NNG, NNP, NP), verb(VV, vA, XR), NNG, NNP, NP, NNB, VV, VA, XR, VX}
+\item{pos}{character. Among Right: ALL(all Part-Of-Speech), noun(NNG, NNP, NP), verb(VV, VA, XR), NNG, NNP, NP, NNB, VV, VA, XR, VX}
 }
 \value{
 matrix or dataframe(LABEL=TRUE)
