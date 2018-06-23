@@ -28,8 +28,11 @@ makeDTM <- function(docs, key="all", LABEL=FALSE, weight = "tf", TEXT.name=NULL,
 
   if(!any(grepl("TEXT", colnames(docs))))
     print("Please use TEXT.name argument")
-  if(!any(grepl("LABEL", colnames(docs))))
-    print("Please use LABEL.name argument")
+  if(LABEL==TRUE)
+  {
+    if(!any(grepl("LABEL", colnames(docs))))
+      print("Please use LABEL.name argument")
+  }
 
   docs$TEXT <- as.character(docs$TEXT)
 
@@ -105,5 +108,102 @@ makeDTM <- function(docs, key="all", LABEL=FALSE, weight = "tf", TEXT.name=NULL,
   }
 
   return(dtm)
+}
+
+
+
+#' findAssocTwo
+#'
+#' find association of two terms
+#' @param dtm matrix. Document Term Matrix
+#' @param term1 character. keyword 1.
+#' @param term2 character. keyword 2.
+#' @return numeric. correlation of two terms.
+#' @export
+#' @examples
+#' findAssocTwo(dtm = dtm, term1 = "home", term2 = "family")
+
+findAssocTwo <- function(dtm, term1, term2)
+{
+  word1 <- as.vector(dtm[, term1])
+  word2 <- as.vector(dtm[, term2])
+  
+  return(cor(word1, word2))
+}
+
+
+#' findAssocs
+#'
+#' find association by one keyword
+#' @param dtm matrix. Document Term Matrix
+#' @param term character. keyword
+#' @param corlimit numeric. lower correlation limit
+#' @return character. correlation above corlimit.
+#' @export
+#' @examples
+#' findAssocs(dtm = dtm, term = "home", corlimit = 0.8)
+
+findAssocs <- function(dtm, term, corlimit=0.3)
+{
+  result <- c()
+  names <- c()
+  k <- 0
+  var.colnames <- colnames(dtm)
+  
+  for(i in 1:NCOL(dtm))
+  {
+    if(term!=var.colnames[i])
+    {
+      var.cor <- findAssocTwo(dtm, term, var.colnames[i])
+      if(abs(var.cor) >= corlimit)
+      {
+        result[k] <- var.cor
+        names[k] <- var.colnames[i]
+        k <- k+1
+      }
+    }
+  }
+  
+  names(result) <- names
+  return(result)
+}
+
+
+#' findAssocsAll
+#'
+#' find association of all terms
+#' @param dtm matrix. Document Term Matrix
+#' @param corlimit numeric. lower correlation limit
+#' @return character. correlation above corlimit.
+#' @export
+#' @examples
+#' findAssocsAll(dtm = dtm, corlimit = 0.8)
+
+findAssocsAll <- function(dtm, corlimit=0.3)
+{
+  result <- c()
+  names <- c()
+  k <- 0
+  var.colnames <- colnames(dtm)
+  
+  for(i in 1:NCOL(dtm))
+  {
+    for(j in 1:NCOL(dtm))
+    {
+      if(var.colnames[i]!=var.colnames[j])
+      {
+        var.cor <- findAssocTwo(dtm, var.colnames[i], var.colnames[j])
+        if(abs(var.cor) >= corlimit)
+        {
+          result[k] <- var.cor
+          names[k] <- paste(var.colnames[i], "-", var.colnames[j], sep = "")
+          k <- k+1
+        }
+      }
+    }
+  }
+  
+  names(result) <- names
+  return(result)
 }
 

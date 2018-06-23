@@ -34,4 +34,3 @@ make DTM
 makeDTM(docs = docs, key = c("excel", "computer"), pos="noun")
 makeDTM(docs = docs, key = c("excel", "computer"), LABEL = TRUE, weight = "tfidf", TEXT.name="body", LABEL.name="tag", pos="verb")
 }
-
