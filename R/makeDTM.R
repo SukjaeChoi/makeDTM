@@ -207,3 +207,29 @@ findAssocsAll <- function(dtm, corlimit=0.3)
   return(result)
 }
 
+
+#' findAssocsAll
+#'
+#' find association of all terms
+#' @param dtm matrix. Document Term Matrix
+#' @param corlimit numeric. lower correlation limit
+#' @return character. correlation above corlimit.
+#' @export
+#' @examples
+#' findAssocsAll(dtm = dtm, corlimit = 0.8)
+
+findFreqTerms <- function(dtm, lowfreq=2, highfreq)
+{
+  result <- c()
+  var.colnames <- colnames(dtm)
+  k <- 1
+  
+  for(i in 1:NCOL(dtm))
+  {
+    if(sum(dtm[,i] >= lowfreq))
+      result[k] <- colnames(dtm[,i])
+  }
+  
+  names(result) <- names
+  return(result)
+}
