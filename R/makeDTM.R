@@ -147,7 +147,7 @@ findAssocs <- function(dtm, term, corlimit=0.3)
 {
   result <- c()
   names <- c()
-  k <- 0
+  k <- 1
   var.colnames <- colnames(dtm)
   
   for(i in 1:NCOL(dtm))
@@ -183,7 +183,7 @@ findAssocsAll <- function(dtm, corlimit=0.3)
 {
   result <- c()
   names <- c()
-  k <- 0
+  k <- 1
   var.colnames <- colnames(dtm)
   
   for(i in 1:NCOL(dtm))
