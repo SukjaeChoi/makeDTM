@@ -3,4 +3,5 @@
 export(findAssocTwo)
 export(findAssocs)
 export(findAssocsAll)
+export(findFreqTerms)
 export(makeDTM)

@@ -208,28 +208,50 @@ findAssocsAll <- function(dtm, corlimit=0.3)
 }
 
 
-#' findAssocsAll
+#' findFreqTerms
 #'
-#' find association of all terms
+#' find frequently used words(lowfreq) or below maximum frequency words(highfreq)
 #' @param dtm matrix. Document Term Matrix
-#' @param corlimit numeric. lower correlation limit
-#' @return character. correlation above corlimit.
+#' @param lowfreq numeric. low frequency limit
+#' @param highfreq numeric. high frequency limit
+#' @return character. words which met frequency condition
 #' @export
 #' @examples
-#' findAssocsAll(dtm = dtm, corlimit = 0.8)
+#' findFreqTerms(dtm = dtm, lowfreq=3, highfreq=4)
 
-findFreqTerms <- function(dtm, lowfreq=2, highfreq)
+findFreqTerms <- function(dtm, lowfreq=0, highfreq=0)
 {
   result <- c()
-  var.colnames <- colnames(dtm)
+  var.colnames <- colnames(dtm, do.NULL = FALSE)
   k <- 1
   
-  for(i in 1:NCOL(dtm))
+  if(lowfreq!=0 & highfreq!=0)
   {
-    if(sum(dtm[,i] >= lowfreq))
-      result[k] <- colnames(dtm[,i])
+    print("Choose only one between lowfreq and highfreq!!")
+  }else
+  {
+    if(lowfreq != 0)
+    {
+      for(i in 1:NCOL(dtm))
+      {
+        if(sum(dtm[,i]) >= lowfreq)
+        {
+          result[k] <- var.colnames[i] 
+          k <- k+1
+        }
+      } 
+    }else if(highfreq != 0)
+    {
+      for(i in 1:NCOL(dtm))
+      {
+        if(sum(dtm[,i]) <= highfreq)
+        {
+          result[k] <- var.colnames[i] 
+          k <- k+1
+        }
+      } 
+    }
   }
   
-  names(result) <- names
   return(result)
 }
