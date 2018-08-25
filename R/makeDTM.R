@@ -4,13 +4,13 @@
 #' make DTM
 #' @param docs dataframe. Every row is document.
 #' @param key character. Vector type Keywords. if none, all words would be keywords.
-#' @param LABEL logical.
+#' @param LABEL logical. In need of LABEL column.
 #' @param weight character. tf or tfidf
 #' @param TEXT.name character. Column name which whould be TEXT.
 #' @param LABEL.name character. Column name which would be LABEL.
 #' @param RHINO logical. In need of morphological anaysis about TEXT column.
-#' @param pos character. Among Right: ALL(all Part-Of-Speech), noun(NNG, NNP, NP), verb(VV, VA, XR), NNG, NNP, NP, NNB, VV, VA, XR, VX
-#' @return matrix or dataframe(LABEL=TRUE)
+#' @param pos character. ALL(all Part-Of-Speech), noun(NNG, NNP, NP), verb(VV, VA, XR), NV(noun, verb), END(EC, EF), NNG, NNP, NP, NNB, VV, VA, XR, VX, EC, EF, EP
+#' @return matrix or dataframe(if LABEL=TRUE)
 #' @export
 #' @examples
 #' makeDTM(docs = docs, key = c("excel", "computer"), pos="noun")

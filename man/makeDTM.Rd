@@ -12,7 +12,7 @@ makeDTM(docs, key = "all", LABEL = FALSE, weight = "tf",
 
 \item{key}{character. Vector type Keywords. if none, all words would be keywords.}
 
-\item{LABEL}{logical.}
+\item{LABEL}{logical. In need of LABEL column.}
 
 \item{weight}{character. tf or tfidf}
 
@@ -22,10 +22,10 @@ makeDTM(docs, key = "all", LABEL = FALSE, weight = "tf",
 
 \item{RHINO}{logical. In need of morphological anaysis about TEXT column.}
 
-\item{pos}{character. Among Right: ALL(all Part-Of-Speech), noun(NNG, NNP, NP), verb(VV, VA, XR), NNG, NNP, NP, NNB, VV, VA, XR, VX}
+\item{pos}{character. ALL(all Part-Of-Speech), noun(NNG, NNP, NP), verb(VV, VA, XR), NV(noun, verb), END(EC, EF), NNG, NNP, NP, NNB, VV, VA, XR, VX, EC, EF, EP}
 }
 \value{
-matrix or dataframe(LABEL=TRUE)
+matrix or dataframe(if LABEL=TRUE)
 }
 \description{
 make DTM
