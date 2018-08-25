@@ -20,7 +20,7 @@ makeDTM(docs, key = "all", LABEL = FALSE, weight = "tf",
 
 \item{LABEL.name}{character. Column name which would be LABEL.}
 
-\item{RHINO}{logical. In case of morphological anaysis need for TEXT column.}
+\item{RHINO}{logical. In need of morphological anaysis about TEXT column.}
 
 \item{pos}{character. Among Right: ALL(all Part-Of-Speech), noun(NNG, NNP, NP), verb(VV, VA, XR), NNG, NNP, NP, NNB, VV, VA, XR, VX}
 }
@@ -33,4 +33,5 @@ make DTM
 \examples{
 makeDTM(docs = docs, key = c("excel", "computer"), pos="noun")
 makeDTM(docs = docs, key = c("excel", "computer"), LABEL = TRUE, weight = "tfidf", TEXT.name="body", LABEL.name="tag", pos="verb")
+makeDTM(docs = docs, key = c("excel", "computer"), weight = "tfidf", TEXT.name="body", LABEL.name="tag", pos="verb")
 }
