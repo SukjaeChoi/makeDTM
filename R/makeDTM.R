@@ -57,7 +57,7 @@ makeDTM <- function(docs, key="all", LABEL=FALSE, weight = "tf", TEXT.name=NULL,
   
   # Calculate tf or tf-idf
   dtm <- matrix(, nrow = NROW(docs), ncol = length(key))          # null matrix for final result
-  dtm.inter <- matrix(, nrow = NROW(docs), ncol = length(key))    # matrix for idf 
+  dtm.inter <- matrix(, nrow = NROW(docs), ncol = length(key))    # null matrix for idf 
   
   if(weight=="tf"){
     
